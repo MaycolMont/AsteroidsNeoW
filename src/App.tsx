@@ -25,11 +25,17 @@ export default function App() {
 
   return (
     <>
-      <div className=''>
+      <div className='flex flex-col items-center justify-center p-flex flex-row items-center justify-center gap-4 p-4'>
         <Filtering asteroids={asteroids} setAsteroids={setAsteroids}/>
         <Pagination page={page} setPage={setPage}/>
-        <button>Limpiar Filtros</button>
+        <button
+          onClick={() => {
+            setPage(page);
+            setAsteroidSelected(null);
+          }}>
+          Limpiar Filtros</button>
       </div>
+      
       <div>
         {asteroids && 
           asteroids.map((asteroid) => (
@@ -41,8 +47,9 @@ export default function App() {
           ))
         }
       </div>
+
       {asteroidSelected && (
-        <div>
+        <div className=''>
           <h2>Detalles del asteroide</h2>
           <p>ID: {asteroidSelected.id}</p>
           <p>Nombre: {asteroidSelected.name}</p>
@@ -63,6 +70,5 @@ export default function App() {
         </div>
       )}
     </>
-
   );
 }
